@@ -68,12 +68,24 @@
             </fieldset>
             <?php endif; ?>
 
+            <?php
+            $policyUrl = $site['lgpd']['policy_url'] ?? '';
+            $consentText = e($site['lgpd']['consent_text'] ?? '');
+            $policyPhrase = 'Política de Privacidade';
+            if (!empty($policyUrl) && str_contains($consentText, $policyPhrase)) {
+                $consentText = str_replace(
+                    $policyPhrase,
+                    '<a href="' . e($policyUrl) . '">' . $policyPhrase . '</a>',
+                    $consentText
+                );
+            }
+            ?>
             <div class="field field--full consent-field">
                 <label>
                     <input type="checkbox" name="consent" value="1" required
                         <?= !empty($old['consent']) ? 'checked' : '' ?>
                         <?= isset($errors['consent']) ? 'aria-invalid="true" aria-describedby="err-consent"' : '' ?>>
-                    <span><?= e($site['lgpd']['consent_text']) ?> <a href="<?= e($site['lgpd']['policy_url']) ?>">Política de Privacidade</a></span>
+                    <span><?= $consentText ?></span>
                 </label>
                 <p class="field-error" id="err-consent" data-error-for="consent"><?= e($errors['consent'] ?? '') ?></p>
             </div>

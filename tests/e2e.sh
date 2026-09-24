@@ -36,6 +36,14 @@ assert_contains() {
   esac
 }
 
+assert_not_contains() {
+  local haystack="$1" needle="$2" desc="$3"
+  case "$haystack" in
+    *"$needle"*) fail "$desc (não deveria conter '$needle')" ;;
+    *) ;;
+  esac
+}
+
 sql() {
   docker compose exec -T db mariadb -ulpm -plpm_dev_pass lpm -N -B -e "$1"
 }
@@ -277,21 +285,23 @@ code=$(do_post "$JAR7" 1 \
   "form_ts=$FORM_TS")
 assert_eq "429" "$code" "6ª tentativa deveria responder 429 (rate limit)"
 
-echo "== Passo 8: landing completa =="
+echo "== Passo 8: landing enxuta (formulario + botoes) =="
 JAR8="$TMPDIR_E2E/jar8"
 get_form "$BASE/" "$JAR8"
-assert_contains "$FORM_HTML" 'id="inicio"' "Home deveria conter id=inicio"
-assert_contains "$FORM_HTML" 'id="sobre"' "Home deveria conter id=sobre"
-assert_contains "$FORM_HTML" 'id="ofertas"' "Home deveria conter id=ofertas"
-assert_contains "$FORM_HTML" 'id="depoimentos"' "Home deveria conter id=depoimentos"
-assert_contains "$FORM_HTML" 'id="faq"' "Home deveria conter id=faq"
 assert_contains "$FORM_HTML" 'id="contato"' "Home deveria conter id=contato"
-assert_contains "$FORM_HTML" "Marina Costa" "Home deveria conter o nome do mentor"
+assert_contains "$FORM_HTML" "Conceição Melo" "Home deveria conter o nome da mentora"
+assert_contains "$FORM_HTML" "Falar com o comercial" "Home deveria conter o botão do comercial"
+assert_contains "$FORM_HTML" "Painel do dono" "Home deveria conter o botão do painel"
 assert_contains "$FORM_HTML" "--color-primary:" "Home deveria conter a custom property --color-primary"
 assert_contains "$FORM_HTML" "nonce=" "Home deveria conter nonce no style inline"
 
+assert_not_contains "$FORM_HTML" 'id="inicio"' "Home não deveria mais conter id=inicio (hero removido)"
+assert_not_contains "$FORM_HTML" 'id="ofertas"' "Home não deveria mais conter id=ofertas (seção removida)"
+assert_not_contains "$FORM_HTML" 'id="depoimentos"' "Home não deveria mais conter id=depoimentos (seção removida)"
+assert_not_contains "$FORM_HTML" 'id="faq"' "Home não deveria mais conter id=faq (seção removida)"
+
 assert_eq "200" "$(http_code "$BASE/assets/css/site.css")" "GET /assets/css/site.css deveria responder 200"
-assert_eq "200" "$(http_code "$BASE/assets/img/logo.svg")" "GET /assets/img/logo.svg deveria responder 200"
+assert_eq "200" "$(http_code "$BASE/assets/img/logo-conceicao-melo.png")" "GET /assets/img/logo-conceicao-melo.png deveria responder 200"
 
 curl -s -D "$HDR" -o "$TMPDIR_E2E/discard" "$BASE/" >/dev/null
 grep -qi '^content-security-policy:' "$HDR" || fail "Header Content-Security-Policy ausente em /"
