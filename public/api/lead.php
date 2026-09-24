@@ -6,7 +6,7 @@ send_security_headers();
 
 $wantsJson = str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
 
-function lead_respond(bool $wantsJson, int $status, array $payload, ?string $redirectTo = null, ?array $flash = null): void
+function lead_respond(bool $wantsJson, int $status, array $payload, string $redirectTo = '../index.php#contato', ?array $flash = null): void
 {
     if ($wantsJson) {
         http_response_code($status);
@@ -15,6 +15,9 @@ function lead_respond(bool $wantsJson, int $status, array $payload, ?string $red
         exit;
     }
 
+    if ($flash === null && empty($payload['ok'])) {
+        $flash = ['status' => 'error', 'errors' => ['form' => $payload['message'] ?? 'Tente novamente.'], 'old' => $_POST];
+    }
     if ($flash !== null) {
         flash_set('lead', $flash);
     }
@@ -24,6 +27,13 @@ function lead_respond(bool $wantsJson, int $status, array $payload, ?string $red
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    if (!$wantsJson) {
+        http_response_code(405);
+        header('Allow: POST');
+        header('Content-Type: text/plain; charset=utf-8');
+        echo 'Método não permitido.';
+        exit;
+    }
     lead_respond($wantsJson, 405, ['ok' => false, 'error' => 'method', 'message' => 'Método não permitido.']);
 }
 
