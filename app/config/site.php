@@ -66,7 +66,8 @@ return [
 
     'lgpd' => [
         'consent_text' => 'Concordo em receber contato e com a Política de Privacidade.',
-        'policy_url' => '#',
+        'policy_url' => '/privacidade.php',
         'footer_notice' => 'Seus dados são usados apenas para contato sobre o seu caso.',
+        'contact_email' => 'conceicao@conceicaomeloadvprev.com.br',
     ],
 ];
