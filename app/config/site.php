@@ -31,8 +31,6 @@ return [
         'headline' => 'Entre na lista de espera dos próximos lançamentos',
         'paragraph' => 'Estamos preparando novos produtos e serviços. Quem está na lista recebe o aviso primeiro, com condições exclusivas de lançamento.',
         'bullets' => [
-            'Acesso antecipado antes da abertura ao público',
-            'Você diz o que precisa — e ajudamos a priorizar o que será lançado',
             'Sem spam: contato apenas quando houver novidade relevante',
         ],
         'card_title' => 'Garanta sua vaga na lista',
