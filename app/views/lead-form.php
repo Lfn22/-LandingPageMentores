@@ -21,7 +21,7 @@ $formLabels = $site['form'] ?? [];
     <p class="lead-form__subtitle"><?= e($site['waitlist']['card_subtitle'] ?? '') ?></p>
 
     <form id="lead-form" class="lead-form" data-lead-form action="api/lead.php" method="post" novalidate>
-        <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+        <p class="form-status" data-form-status role="status" aria-live="polite"><?= e($errors['form'] ?? '') ?></p>
 
         <div class="form-grid">
             <div class="field">
