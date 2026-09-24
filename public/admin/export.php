@@ -13,7 +13,7 @@ header('Content-Disposition: attachment; filename="leads-' . date('Y-m-d') . '.c
 $out = fopen('php://output', 'wb');
 fwrite($out, "\xEF\xBB\xBF");
 
-fputcsv($out, ['id', 'data', 'nome', 'telefone', 'email', 'mensagem', 'interesses', 'status', 'consent_at', 'consent_ip'], ';', '"', '\\', "\r\n");
+fputcsv($out, ['id', 'data', 'nome', 'telefone', 'email', 'mensagem', 'interesses', 'status', 'consent_at', 'consent_ip'], ';', '"', '', "\r\n");
 
 $stmt = db()->query(
     'SELECT id, name, phone, email, message, interests, status, consent_at, consent_ip, created_at FROM leads ORDER BY created_at DESC'
@@ -41,7 +41,7 @@ foreach ($stmt as $lead) {
         csv_safe($lead['status']),
         csv_safe($lead['consent_at']),
         csv_safe($lead['consent_ip']),
-    ], ';', '"', '\\', "\r\n");
+    ], ';', '"', '', "\r\n");
 }
 
 fclose($out);
