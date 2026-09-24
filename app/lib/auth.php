@@ -46,6 +46,9 @@ function auth_user(): ?int
 
     if (time() - (int) $_SESSION['last_seen'] > AUTH_IDLE_SECONDS) {
         auth_logout();
+        // Sessão nova para o token CSRF do formulário de login ser válido.
+        session_start_secure();
+        session_regenerate_id(true);
         return null;
     }
 
