@@ -22,7 +22,7 @@ Sair do zero até uma cópia publicável hoje mesmo: primeiro a landing page e a
 **Depends on**: Nothing (first phase)
 **Requirements**: LAND-01, LAND-02, LEAD-01, LEAD-02, LEAD-03, LEAD-04, LEAD-05, LEAD-06, INST-01, INST-02
 **Success Criteria** (what must be TRUE):
-  1. Visitante vê uma landing responsiva (mobile-first) com hero, sobre o mentor, produtos/ofertas, depoimentos, FAQ e formulário de contato, com marca (nome, logo, cores, fontes, textos, WhatsApp) vinda de um único arquivo de configuração
+  1. Visitante vê uma página única responsiva (mobile-first) com topo (marca + botão do comercial + botão do painel do dono), formulário de contato e rodapé LGPD, com marca (nome, logo, cores, fontes, textos, WhatsApp) vinda de um único arquivo de configuração
   2. Visitante preenche nome, telefone, e-mail e mensagem (validados no cliente e no servidor), marca o consentimento LGPD e vê uma confirmação clara após o envio; o registro é gravado no MySQL com data/hora, IP e o texto da política aceita
   3. Após o envio, o visitante vê um botão que abre o WhatsApp do mentor com mensagem pré-preenchida
   4. Envios de spam/bots são bloqueados por honeypot, token CSRF e limite de envios por IP; o visitante pode marcar opcionalmente produtos de interesse (lista do config), gravados como demandas
@@ -44,7 +44,10 @@ Plans:
   3. Dono exporta todos os leads em CSV UTF-8 com BOM que abre corretamente no Excel
   4. Dono faz logout e as páginas do painel ficam inacessíveis sem sessão válida
   5. Painel reproduz a referência `.planning/references/painel-admin-ref.png`: KPIs (total, 7 dias, hoje), Radar de demanda, Fila de trabalho com status editável (novo/contatado/fechado) e botão "Copiar CSV"
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 02-01-PLAN.md — Login seguro, logout, KPIs, Radar de demanda e Fila de trabalho com busca no visual da referência (+ tests/e2e-admin.sh)
+- [ ] 02-02-PLAN.md — CSV (baixar/copiar, BOM, anti-fórmula), status editável e verificação visual
 **UI hint**: yes
 
 ### Phase 3: Acabamento e Deploy

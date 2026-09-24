@@ -29,7 +29,7 @@ return [
 
     'waitlist' => [
         'headline' => 'Entre na lista de espera dos próximos lançamentos',
-        'paragraph' => 'Estamos preparando novos produtos e serviços. Quem está na lista recebe o aviso primeiro, com condições exclusivas de lançamento.',
+        'paragraph' => 'Estamos preparando novos produtos e serviços. Quem está na lista recebe o aviso primeiro.',
         'bullets' => [
             'Sem spam: contato apenas quando houver novidade relevante',
         ],
