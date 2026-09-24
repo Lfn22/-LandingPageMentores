@@ -17,9 +17,12 @@ function safe_url_privacy(?string $url): string
 {
     $url = (string) $url;
     foreach (['https://', 'http://', '/', '#', 'assets/'] as $prefix) {
-        if (str_starts_with($url, $prefix)) {
+        if (str_starts_with($url, $prefix) && !str_starts_with($url, '//')) {
             return $url;
         }
+    }
+    if (preg_match('#^[A-Za-z0-9_\-./]+$#', $url) && !str_contains($url, '..')) {
+        return $url;
     }
     return '#';
 }
@@ -102,7 +105,7 @@ $cssVersion = asset_version_privacy('assets/css/site.css');
 <body>
     <main class="page">
         <div class="container policy">
-            <a class="policy__back" href="/">&larr; Voltar</a>
+            <a class="policy__back" href="./">&larr; Voltar</a>
 
             <img class="policy__logo" src="<?= e(safe_url_privacy($site['brand']['logo'] ?? '')) ?>" alt="<?= e($brandName) ?>" width="160" height="86" decoding="async">
 

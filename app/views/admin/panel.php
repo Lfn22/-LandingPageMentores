@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/admin.css">
+<link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <body class="admin-body">
 <main class="admin-wrap">
@@ -19,8 +19,8 @@
             <h1>Painel administrativo</h1>
             <div class="admin-card__actions">
                 <button type="button" class="btn-outline" data-copy-csv>Copiar CSV</button>
-                <a class="btn-outline" href="/admin/export.php">Baixar CSV</a>
-                <form method="post" action="/admin/logout.php">
+                <a class="btn-outline" href="export.php">Baixar CSV</a>
+                <form method="post" action="logout.php">
                     <input type="hidden" name="csrf_token" value="<?= e($csrfLogout) ?>">
                     <button type="submit" class="btn-outline">Sair</button>
                 </form>
@@ -121,7 +121,7 @@
                                         <?= e($messagePreview) ?>
                                     </td>
                                     <td>
-                                        <form method="post" action="/admin/status.php" class="admin-status-form" data-status-form>
+                                        <form method="post" action="status.php" class="admin-status-form" data-status-form>
                                             <input type="hidden" name="csrf_token" value="<?= e($csrfLogout) ?>">
                                             <input type="hidden" name="id" value="<?= (int) $lead['id'] ?>">
                                             <select name="status" data-status-select>
@@ -147,6 +147,6 @@
 
     <footer class="admin-footer"><?= e($site['lgpd']['footer_notice'] ?? '') ?></footer>
 </main>
-<script src="/assets/js/admin.js" defer></script>
+<script src="../assets/js/admin.js" defer></script>
 </body>
 </html>

@@ -18,7 +18,7 @@ function status_respond(bool $wantsJson, int $status, array $payload): void
     }
 
     http_response_code(303);
-    header('Location: /admin/');
+    header('Location: ./');
     exit;
 }
 

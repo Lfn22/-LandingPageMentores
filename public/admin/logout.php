@@ -24,4 +24,4 @@ if (!csrf_verify($_POST['csrf_token'] ?? null)) {
 auth_logout();
 
 http_response_code(303);
-header('Location: /admin/');
+header('Location: ./');

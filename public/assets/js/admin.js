@@ -6,7 +6,7 @@
     var copyDefaultText = copyBtn.textContent;
 
     copyBtn.addEventListener('click', function () {
-      fetch('/admin/export.php', { credentials: 'same-origin' })
+      fetch('export.php', { credentials: 'same-origin' })
         .then(function (response) {
           if (!response.ok) {
             throw new Error('export falhou');

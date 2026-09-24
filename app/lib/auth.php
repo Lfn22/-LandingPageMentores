@@ -71,7 +71,7 @@ function auth_require(bool $json = false): void
     }
 
     http_response_code(302);
-    header('Location: /admin/');
+    header('Location: ./');
     exit;
 }
 

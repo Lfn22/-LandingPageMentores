@@ -18,9 +18,12 @@ function safe_url(?string $url): string
 {
     $url = (string) $url;
     foreach (['https://', 'http://', '/', '#', 'assets/'] as $prefix) {
-        if (str_starts_with($url, $prefix)) {
+        if (str_starts_with($url, $prefix) && !str_starts_with($url, '//')) {
             return $url;
         }
+    }
+    if (preg_match('#^[A-Za-z0-9_\-./]+$#', $url) && !str_contains($url, '..')) {
+        return $url;
     }
     return '#';
 }
@@ -51,7 +54,7 @@ $commercialUrl = (string) ($site['commercial']['url'] ?? '');
 $commercialLabel = $site['commercial']['label'] ?? 'Falar com o comercial';
 $showCommercial = is_external_url($commercialUrl);
 
-$adminUrl = $site['admin_url'] ?? '/admin/';
+$adminUrl = $site['admin_url'] ?? 'admin/';
 
 $brandAlt = trim(($site['brand']['mentor_name'] ?? '') . ' — ' . ($site['brand']['program_name'] ?? ''), ' —');
 

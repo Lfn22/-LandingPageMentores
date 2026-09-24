@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (auth_login(db(), $email, $password)) {
             http_response_code(303);
-            header('Location: /admin/');
+            header('Location: ./');
             exit;
         }
 
