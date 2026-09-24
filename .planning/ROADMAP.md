@@ -27,7 +27,10 @@ Sair do zero até uma cópia publicável hoje mesmo: primeiro a landing page e a
   3. Após o envio, o visitante vê um botão que abre o WhatsApp do mentor com mensagem pré-preenchida
   4. Envios de spam/bots são bloqueados por honeypot, token CSRF e limite de envios por IP; o visitante pode marcar opcionalmente produtos de interesse (lista do config), gravados como demandas
   5. Rodar o script de setup em uma cópia nova cria as tabelas e o usuário do dono, e as credenciais do banco ficam fora do acesso público (ou protegidas por .htaccess)
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [x] 01-01-PLAN.md — Docker + e2e, camada compartilhada (bootstrap/db/sessão/segurança), schema, setup.php e captura de lead ponta a ponta (API + formulário mínimo + WhatsApp)
+- [ ] 01-02-PLAN.md — Landing completa dirigida por site.php (seções, CSS editorial, JS de envio/validação) + verificação humana
 **UI hint**: yes
 
 ### Phase 2: Painel do Dono
@@ -63,6 +66,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Landing + Captura de Leads | 0/TBD | Not started | - |
+| 1. Landing + Captura de Leads | 1/2 | In Progress|  |
 | 2. Painel do Dono | 0/TBD | Not started | - |
 | 3. Acabamento e Deploy | 0/TBD | Not started | - |

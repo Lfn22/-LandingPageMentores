@@ -8,17 +8,17 @@
 ### Landing Page
 
 - [ ] **LAND-01**: Visitante vê uma landing page responsiva (mobile-first) com hero, sobre o mentor, produtos/ofertas, depoimentos, FAQ e formulário de contato
-- [ ] **LAND-02**: Marca do mentor (nome, logo, cores primária/secundária, fontes, textos, produtos, depoimentos, WhatsApp) vem de um único arquivo de configuração, sem editar HTML
+- [x] **LAND-02**: Marca do mentor (nome, logo, cores primária/secundária, fontes, textos, produtos, depoimentos, WhatsApp) vem de um único arquivo de configuração, sem editar HTML
 - [ ] **LAND-03**: Visual moderno e autoral (tipografia forte, sem gradientes roxos genéricos/emojis/cards clonados), com boa performance (Lighthouse ≥ 90 mobile) e SEO básico (title, meta description, Open Graph)
 
 ### Captura de Leads
 
-- [ ] **LEAD-01**: Lead precisa preencher nome, telefone, e-mail e mensagem (todos obrigatórios, validados no cliente e no servidor)
-- [ ] **LEAD-02**: Lead precisa marcar o consentimento LGPD; o sistema registra data/hora, IP e texto da política aceita
-- [ ] **LEAD-03**: Lead enviado é gravado no MySQL e o visitante vê uma confirmação clara
-- [ ] **LEAD-04**: Após o envio, o visitante vê um botão que abre o WhatsApp do mentor com mensagem pré-preenchida
-- [ ] **LEAD-05**: Envios de spam/bots são bloqueados (honeypot, token CSRF e limite de envios por IP)
-- [ ] **LEAD-06**: Lead pode marcar opcionalmente "Tenho interesse em" (um ou mais produtos do mentor, lista vinda do arquivo de config), gravado como demandas do lead
+- [x] **LEAD-01**: Lead precisa preencher nome, telefone, e-mail e mensagem (todos obrigatórios, validados no cliente e no servidor)
+- [x] **LEAD-02**: Lead precisa marcar o consentimento LGPD; o sistema registra data/hora, IP e texto da política aceita
+- [x] **LEAD-03**: Lead enviado é gravado no MySQL e o visitante vê uma confirmação clara
+- [x] **LEAD-04**: Após o envio, o visitante vê um botão que abre o WhatsApp do mentor com mensagem pré-preenchida
+- [x] **LEAD-05**: Envios de spam/bots são bloqueados (honeypot, token CSRF e limite de envios por IP)
+- [x] **LEAD-06**: Lead pode marcar opcionalmente "Tenho interesse em" (um ou mais produtos do mentor, lista vinda do arquivo de config), gravado como demandas do lead
 
 ### Painel do Dono
 
@@ -34,8 +34,8 @@
 
 ### Instalação e Deploy
 
-- [ ] **INST-01**: Script de setup cria as tabelas e o usuário do dono em uma nova cópia (e se desativa/bloqueia depois de usado)
-- [ ] **INST-02**: Credenciais do banco ficam em arquivo de config fora do acesso público (ou protegido por .htaccess)
+- [x] **INST-01**: Script de setup cria as tabelas e o usuário do dono em uma nova cópia (e se desativa/bloqueia depois de usado)
+- [x] **INST-02**: Credenciais do banco ficam em arquivo de config fora do acesso público (ou protegido por .htaccess)
 - [ ] **INST-03**: Guia passo a passo para publicar uma nova cópia na Hostinger (criar banco, subir arquivos, rodar setup, configurar marca)
 
 ## v2 Requirements
@@ -64,15 +64,15 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | LAND-01 | Phase 1 | Pending |
-| LAND-02 | Phase 1 | Pending |
-| LEAD-01 | Phase 1 | Pending |
-| LEAD-02 | Phase 1 | Pending |
-| LEAD-03 | Phase 1 | Pending |
-| LEAD-04 | Phase 1 | Pending |
-| LEAD-05 | Phase 1 | Pending |
-| LEAD-06 | Phase 1 | Pending |
-| INST-01 | Phase 1 | Pending |
-| INST-02 | Phase 1 | Pending |
+| LAND-02 | Phase 1 | Complete |
+| LEAD-01 | Phase 1 | Complete |
+| LEAD-02 | Phase 1 | Complete |
+| LEAD-03 | Phase 1 | Complete |
+| LEAD-04 | Phase 1 | Complete |
+| LEAD-05 | Phase 1 | Complete |
+| LEAD-06 | Phase 1 | Complete |
+| INST-01 | Phase 1 | Complete |
+| INST-02 | Phase 1 | Complete |
 | PAIN-01 | Phase 2 | Pending |
 | PAIN-02 | Phase 2 | Pending |
 | PAIN-03 | Phase 2 | Pending |
