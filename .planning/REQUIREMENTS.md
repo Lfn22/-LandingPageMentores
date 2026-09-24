@@ -24,12 +24,12 @@
 
 - [x] **PAIN-01**: Dono da mentoria faz login com e-mail e senha (hash com password_hash, sessão segura, proteção contra força bruta)
 - [x] **PAIN-02**: Dono vê a lista de leads (mais recentes primeiro) com busca e todos os campos captados
-- [ ] **PAIN-03**: Dono exporta todos os leads em CSV (UTF-8 com BOM, abre corretamente no Excel)
+- [x] **PAIN-03**: Dono exporta todos os leads em CSV (UTF-8 com BOM, abre corretamente no Excel)
 - [x] **PAIN-04**: Dono faz logout; páginas do painel são inacessíveis sem sessão válida
 - [x] **PAIN-05**: Dono vê três KPIs no topo: inscritos no total, novos nos últimos 7 dias e inscritos hoje
 - [x] **PAIN-06**: Dono vê o "Radar de demanda": contagem de leads por produto/interesse (estado vazio "Sem demandas registradas ainda.")
-- [ ] **PAIN-07**: Dono muda o status de cada lead (novo, contatado, fechado) na "Fila de trabalho" (colunas Nome, Contato, Demandas, Status), com busca por nome, e-mail ou demanda
-- [ ] **PAIN-08**: Dono copia os leads em CSV para a área de transferência ("Copiar CSV"), além do download
+- [x] **PAIN-07**: Dono muda o status de cada lead (novo, contatado, fechado) na "Fila de trabalho" (colunas Nome, Contato, Demandas, Status), com busca por nome, e-mail ou demanda
+- [x] **PAIN-08**: Dono copia os leads em CSV para a área de transferência ("Copiar CSV"), além do download
 - [x] **PAIN-09**: Painel segue a referência visual `.planning/references/painel-admin-ref.png` (fundo azul-ardósia escuro, card branco arredondado, KPIs com borda fina, rodapé com aviso LGPD)
 
 ### Instalação e Deploy
@@ -75,12 +75,12 @@
 | INST-02 | Phase 1 | Complete |
 | PAIN-01 | Phase 2 | Complete |
 | PAIN-02 | Phase 2 | Complete |
-| PAIN-03 | Phase 2 | Pending |
+| PAIN-03 | Phase 2 | Complete |
 | PAIN-04 | Phase 2 | Complete |
 | PAIN-05 | Phase 2 | Complete |
 | PAIN-06 | Phase 2 | Complete |
-| PAIN-07 | Phase 2 | Pending |
-| PAIN-08 | Phase 2 | Pending |
+| PAIN-07 | Phase 2 | Complete |
+| PAIN-08 | Phase 2 | Complete |
 | PAIN-09 | Phase 2 | Complete |
 | LAND-03 | Phase 3 | Pending |
 | INST-03 | Phase 3 | Pending |

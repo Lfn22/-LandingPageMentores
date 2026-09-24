@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Plano 02-01 (Login + KPIs/Radar/Fila) concluido; Fase 2 em andamento (1/2 planos)
-last_updated: "2026-09-24T16:58:45.225Z"
-last_activity: "2026-09-24 — Plano 02-01 concluído: login seguro, KPIs, Radar de demanda e Fila de trabalho com busca; tests/e2e-admin.sh verde"
+stopped_at: Fase 2 (Painel do Dono) completa (2/2 planos); checkpoint visual aprovado pelo usuário; próximo Fase 3
+last_updated: "2026-09-24T17:30:00.000Z"
+last_activity: "2026-09-24 — Plano 02-02 concluído e aprovado: export/copiar CSV e status editável na Fila de trabalho; Fase 2 completa"
 progress:
   total_phases: 3
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 4
-  completed_plans: 3
-  percent: 33
+  completed_plans: 4
+  percent: 50
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-09-24)
 
 **Core value:** O lead preenche nome, telefone, e-mail e mensagem, e esse registro fica gravado com segurança no banco e visível/exportável em CSV pelo dono da mentoria.
-**Current focus:** Phase 2 (Painel do Dono) em andamento — plano 02-02 a seguir
+**Current focus:** Phase 3 (Acabamento e Deploy) a seguir
 
 ## Current Position
 
-Phase: 2 of 3 (Painel do Dono) — In progress
-Plan: 1 of 2 complete
-Status: Ready to execute (plano 02-02)
-Last activity: 2026-09-24 — Plano 02-01 concluído: login seguro, KPIs, Radar de demanda e Fila de trabalho com busca; tests/e2e-admin.sh verde
+Phase: 3 of 3 (Acabamento e Deploy) — Not started
+Plan: 0 of TBD complete
+Status: Ready to plan/execute Fase 3
+Last activity: 2026-09-24 — Plano 02-02 concluído e aprovado pelo usuário (checkpoint visual): export/copiar CSV e status editável; Fase 2 (Painel do Dono) completa
 
-Progress: [████████░░] 75%
+Progress: [██████████] 100% (Fases 1-2)
 
 ## Performance Metrics
 
@@ -45,11 +45,11 @@ Progress: [████████░░] 75%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01 | 2 | ~2h40min | ~80 min |
-| 02 | 1 | ~45min | ~45 min |
+| 02 | 2 | ~1h20min | ~40 min |
 
 **Recent Trend:**
 
-- Last 5 plans: 01-01 (30 min, 3 tasks, 19 files), 01-02 (~2h10min, 8 tasks, 8 files), 02-01 (45min, 3 tasks, 8 files)
+- Last 5 plans: 01-01 (30 min, 3 tasks, 19 files), 01-02 (~2h10min, 8 tasks, 8 files), 02-01 (45min, 3 tasks, 8 files), 02-02 (~35min, 2 tasks, 6 files)
 - Trend: -
 
 *Updated after each plan completion*
@@ -69,6 +69,7 @@ Recent decisions affecting current work:
 - [Phase 01]: Bloco 'Tenho interesse em' removido do formulário (products vazio em site.php); suporte a interests no banco/validação mantido para reuso futuro
 - [Phase 02]: Radar de demanda funciona sem produtos cadastrados (site.php products vazio): mostra as 5 demandas (mensagens) mais recentes em vez de agregar por produto
 - [Phase 02]: Busca do painel (?q=) cobre nome, e-mail e mensagem (nao telefone/interesses), ja que interesses ficam vazios com products: []
+- [Phase 02]: Checkpoint visual do painel (02-02 Task 3) aprovado pelo usuário como está ("aprovado"), sem pedidos de ajuste — Fase 2 encerrada
 
 ### Pending Todos
 
@@ -88,6 +89,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-09-24T16:58:45.175Z
-Stopped at: Plano 02-01 (Login + KPIs/Radar/Fila) concluido; Fase 2 em andamento (1/2 planos)
-Resume file: .planning/phases/02-painel-do-dono/02-01-SUMMARY.md
+Last session: 2026-09-24T17:30:00.000Z
+Stopped at: Fase 2 (Painel do Dono) completa (2/2 planos); checkpoint visual aprovado pelo usuário; próximo Fase 3
+Resume file: .planning/phases/02-painel-do-dono/02-02-SUMMARY.md

@@ -119,3 +119,7 @@ Para a conferência visual (Task 3), a stack foi deixada de pé com:
 ## Self-Check: PASSED
 
 All 7 files (3 created, 4 modified) verified present on disk; both task commits (`a20027f`, `44dc58f`) verified in `git log`.
+
+## Checkpoint aprovado
+
+O usuário respondeu "aprovado" ao checkpoint visual da Task 3, sem pedidos de ajuste. Painel aceito como está. Fase 2 (Painel do Dono) encerrada como completa (2/2 planos).
