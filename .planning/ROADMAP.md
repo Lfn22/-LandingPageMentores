@@ -46,7 +46,7 @@ Plans:
   5. Painel reproduz a referência `.planning/references/painel-admin-ref.png`: KPIs (total, 7 dias, hoje), Radar de demanda, Fila de trabalho com status editável (novo/contatado/fechado) e botão "Copiar CSV"
 **Plans**: 2 plans
 Plans:
-- [ ] 02-01-PLAN.md — Login seguro, logout, KPIs, Radar de demanda e Fila de trabalho com busca no visual da referência (+ tests/e2e-admin.sh)
+- [x] 02-01-PLAN.md — Login seguro, logout, KPIs, Radar de demanda e Fila de trabalho com busca no visual da referência (+ tests/e2e-admin.sh)
 - [ ] 02-02-PLAN.md — CSV (baixar/copiar, BOM, anti-fórmula), status editável e verificação visual
 **UI hint**: yes
 
@@ -70,5 +70,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Landing + Captura de Leads | 2/2 | Complete   | 2026-09-24 |
-| 2. Painel do Dono | 0/TBD | Not started | - |
+| 2. Painel do Dono | 1/2 | In Progress|  |
 | 3. Acabamento e Deploy | 0/TBD | Not started | - |
