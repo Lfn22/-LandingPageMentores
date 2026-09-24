@@ -3,6 +3,7 @@
 require __DIR__ . '/_bootstrap.php';
 
 send_security_headers();
+header('Cache-Control: no-store, private');
 
 $site = site_config();
 $flash = flash_take('lead');
