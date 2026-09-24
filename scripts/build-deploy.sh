@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Gera os pacotes prontos para publicar na Hostinger:
 # - dist/hostinger-public_html.zip: conteúdo de public/
-# - dist/hostinger-app.zip: conteúdo de app/, sem config/config.php nem storage/*.lock
+# - dist/hostinger-app.zip: pasta app/ (raiz do zip), sem config/config.php nem storage/*.lock
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
@@ -38,12 +38,12 @@ mkdir -p "$STAGE_DIR/public_html"
 cp -r public/. "$STAGE_DIR/public_html/"
 compress "$STAGE_DIR/public_html" "$DIST_DIR/hostinger-public_html.zip"
 
-# --- app: conteúdo de app/, sem config.php nem *.lock em storage/ ---
-mkdir -p "$STAGE_DIR/app"
-cp -r app/. "$STAGE_DIR/app/"
-rm -f "$STAGE_DIR/app/config/config.php"
-rm -f "$STAGE_DIR/app/storage/"*.lock 2>/dev/null || true
-compress "$STAGE_DIR/app" "$DIST_DIR/hostinger-app.zip"
+# --- app: pasta app/ na raiz do zip, sem config.php nem *.lock em storage/ ---
+mkdir -p "$STAGE_DIR/app-root/app"
+cp -r app/. "$STAGE_DIR/app-root/app/"
+rm -f "$STAGE_DIR/app-root/app/config/config.php"
+rm -f "$STAGE_DIR/app-root/app/storage/"*.lock 2>/dev/null || true
+compress "$STAGE_DIR/app-root" "$DIST_DIR/hostinger-app.zip"
 
 rm -rf "$STAGE_DIR"
 

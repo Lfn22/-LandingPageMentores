@@ -17,6 +17,12 @@ No hPanel, vá em **Bancos de dados → MySQL** e crie um banco novo. Anote:
 - A pasta `app/` vai **ao lado** de `public_html/`, em `domains/SEU-DOMINIO/app/` (fora do webroot —
   é a camada compartilhada com configuração, banco e views).
 
+Pacotes prontos (gerados por `scripts/build-deploy.sh` em `dist/`):
+
+- `hostinger-public_html.zip`: extraia **dentro** de `public_html/` (os arquivos saem direto ali).
+- `hostinger-app.zip`: extraia em `domains/SEU-DOMINIO/` — o zip já contém a pasta `app/`, então o
+  resultado é `domains/SEU-DOMINIO/app/`.
+
 **Se o plano não permitir criar pastas fora de `public_html/`:** coloque `app/` dentro de
 `public_html/` (ex.: `public_html/app/`) e:
 
