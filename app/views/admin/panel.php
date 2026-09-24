@@ -120,7 +120,19 @@
                                         <?php endif; ?>
                                         <?= e($messagePreview) ?>
                                     </td>
-                                    <td><?= e($statusLabels[$lead['status']] ?? $lead['status']) ?></td>
+                                    <td>
+                                        <form method="post" action="/admin/status.php" class="admin-status-form" data-status-form>
+                                            <input type="hidden" name="csrf_token" value="<?= e($csrfLogout) ?>">
+                                            <input type="hidden" name="id" value="<?= (int) $lead['id'] ?>">
+                                            <select name="status" data-status-select>
+                                                <?php foreach ($statusLabels as $value => $label): ?>
+                                                    <option value="<?= e($value) ?>" <?= $value === $lead['status'] ? 'selected' : '' ?>><?= e($label) ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <button type="submit" class="btn-outline" data-status-save>Salvar</button>
+                                            <span class="admin-status-feedback" data-status-feedback aria-live="polite"></span>
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -135,5 +147,6 @@
 
     <footer class="admin-footer"><?= e($site['lgpd']['footer_notice'] ?? '') ?></footer>
 </main>
+<script src="/assets/js/admin.js" defer></script>
 </body>
 </html>

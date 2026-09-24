@@ -1,5 +1,20 @@
 <?php
 
+const LEAD_STATUSES = ['novo', 'contatado', 'fechado'];
+
+// Neutraliza CSV/formula injection: células que começam com = + - @ TAB ou CR
+// ganham um prefixo ' para o Excel/LibreOffice tratá-las como texto puro.
+function csv_safe(?string $value): string
+{
+    $value = (string) $value;
+
+    if ($value !== '' && in_array($value[0], ['=', '+', '-', '@', "\t", "\r"], true)) {
+        return "'" . $value;
+    }
+
+    return $value;
+}
+
 function admin_kpis(PDO $pdo): array
 {
     $total = (int) $pdo->query('SELECT COUNT(*) FROM leads')->fetchColumn();

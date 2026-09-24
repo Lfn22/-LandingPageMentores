@@ -252,6 +252,26 @@ a {
     margin-top: 0.25rem;
 }
 
+.admin-status-form {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.admin-status-form select {
+    padding: 0.35rem 0.5rem;
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-family: inherit;
+}
+
+.admin-status-feedback {
+    font-size: 0.75rem;
+    color: var(--admin-muted);
+}
+
 .admin-note {
     color: var(--admin-muted);
     font-size: 0.8rem;
