@@ -1,5 +1,13 @@
 Options -Indexes
 
+# Força HTTPS em produção (não afeta o Docker local em http://localhost).
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:[0-9]+)?$
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
 <FilesMatch "^(\.|_)">
     Require all denied
 </FilesMatch>
