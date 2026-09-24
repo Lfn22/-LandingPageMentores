@@ -7,7 +7,11 @@ cd "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BASE="http://localhost:${LPM_PORT:-8080}"
 DOCKER_SETUP_TOKEN="docker-setup-token-0123456789"
 
-TMPDIR_E2E=$(mktemp -d)
+# Caminho relativo (não "/tmp/..."): com MSYS_NO_PATHCONV=1 o curl nativo do
+# Windows não resolve caminhos POSIX absolutos passados para -c/-b/-D/-o.
+TMPDIR_E2E="tests/.e2e-tmp"
+rm -rf "$TMPDIR_E2E"
+mkdir -p "$TMPDIR_E2E"
 trap 'rm -rf "$TMPDIR_E2E"' EXIT
 HDR="$TMPDIR_E2E/headers"
 BODY="$TMPDIR_E2E/body"
@@ -38,7 +42,9 @@ sql() {
 
 http_code() {
   # http_code <url>
-  curl -s -o /dev/null -w "%{http_code}" "$1"
+  # -o com caminho relativo: com MSYS_NO_PATHCONV=1 o curl nativo do Windows
+  # não resolve "/dev/null" passado como argumento.
+  curl -s -o "$TMPDIR_E2E/discard" -w "%{http_code}" "$1"
 }
 
 # get_form <url> <cookiejar>

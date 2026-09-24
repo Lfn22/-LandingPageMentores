@@ -1,3 +1,4 @@
 app/config/config.php
 app/storage/*
 !app/storage/.gitkeep
+tests/.e2e-tmp/
