@@ -6,7 +6,7 @@ return [
     'brand' => [
         'mentor_name' => 'Conceição Melo',
         'program_name' => 'Advocacia Previdenciária',
-        'logo' => 'assets/img/logo-conceicao-melo.png',
+        'logo' => 'assets/img/logo-conceicao-melo.svg',
     ],
 
     'colors' => [

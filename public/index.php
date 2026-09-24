@@ -94,7 +94,7 @@ $jsVersion = asset_version('assets/js/site.js');
     <main class="page" id="contato">
         <div class="container waitlist">
             <div class="waitlist__intro">
-                <img class="waitlist__logo" src="<?= e(safe_url($site['brand']['logo'] ?? '')) ?>" alt="<?= e($brandAlt) ?>" width="300" height="188">
+                <img class="waitlist__logo" src="<?= e(safe_url($site['brand']['logo'] ?? '')) ?>" alt="<?= e($brandAlt) ?>" width="300" height="161" decoding="async" fetchpriority="high">
 
                 <h1 class="waitlist__headline"><?= e($waitlist['headline'] ?? '') ?></h1>
                 <div class="waitlist__hairline" aria-hidden="true"></div>
