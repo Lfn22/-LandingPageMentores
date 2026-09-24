@@ -92,6 +92,27 @@ p {
   background: rgba(243, 239, 230, 0.08);
 }
 
+.btn-commercial {
+  background: var(--color-accent, #c8a24c);
+  color: #263039;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 1em 2.6em;
+  border-radius: 999px;
+  min-width: min(100%, 340px);
+}
+
+.btn-commercial:hover {
+  opacity: 0.92;
+}
+
+.admin-link {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  z-index: 10;
+}
+
 button.btn {
   border: none;
 }
@@ -112,7 +133,7 @@ button.btn:disabled,
   flex: 1;
   display: flex;
   align-items: center;
-  padding: 3rem 0;
+  padding: 5rem 0 3rem;
 }
 
 .waitlist {

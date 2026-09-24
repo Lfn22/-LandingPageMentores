@@ -89,6 +89,8 @@ $jsVersion = asset_version('assets/js/site.js');
     <script src="assets/js/site.js?v=<?= (int) $jsVersion ?>" defer></script>
 </head>
 <body>
+    <a class="btn btn-pill admin-link" href="<?= e(safe_url($adminUrl)) ?>">Ver inscrições</a>
+
     <main class="page" id="contato">
         <div class="container waitlist">
             <div class="waitlist__intro">
@@ -120,12 +122,11 @@ $jsVersion = asset_version('assets/js/site.js');
 
     <footer class="site-footer">
         <div class="container">
-            <div class="site-footer__actions">
-                <a class="btn btn-pill" href="<?= e(safe_url($adminUrl)) ?>">Ver inscrições</a>
-                <?php if ($showCommercial): ?>
-                    <a class="btn btn-pill" href="<?= e($commercialUrl) ?>" target="_blank" rel="noopener"><?= e($commercialLabel) ?></a>
-                <?php endif; ?>
-            </div>
+            <?php if ($showCommercial): ?>
+                <div class="site-footer__actions">
+                    <a class="btn btn-commercial" href="<?= e($commercialUrl) ?>" target="_blank" rel="noopener"><?= e($commercialLabel) ?></a>
+                </div>
+            <?php endif; ?>
             <?php if (!empty($site['lgpd']['footer_notice'])): ?>
                 <p class="site-footer__lgpd"><?= e($site['lgpd']['footer_notice']) ?></p>
             <?php endif; ?>
