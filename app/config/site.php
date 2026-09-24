@@ -52,14 +52,14 @@ return [
     'products' => [],
 
     'whatsapp' => [
-        'number' => '5511999999999',
+        'number' => '5586988036660',
         'default_message' => 'Olá! Vim pelo site e gostaria de entrar na lista de espera.',
         'after_lead_message' => 'Olá! Sou {nome}, acabei de entrar na lista de espera pelo site.',
     ],
 
     'commercial' => [
         'label' => 'Falar com o comercial',
-        'url' => 'https://wa.me/5511999999999',
+        'url' => 'https://wa.me/5586988036660?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20o%20comercial.',
     ],
 
     'admin_url' => '/admin/',
