@@ -129,8 +129,7 @@ $cssVersion = asset_version_privacy('assets/css/site.css');
             aceite no formulário de contato antes do envio.</p>
 
             <h2>Por quanto tempo guardamos os dados</h2>
-            <p>Os dados ficam armazenados até que você solicite a exclusão, ou por, no máximo, 24 meses a partir do
-            envio, o que ocorrer primeiro.</p>
+            <p>Os dados ficam armazenados até a solicitação de exclusão.</p>
 
             <h2>Compartilhamento</h2>
             <p>Não compartilhamos, vendemos ou cedemos esses dados a terceiros. O acesso é restrito ao responsável
@@ -148,6 +147,8 @@ $cssVersion = asset_version_privacy('assets/css/site.css');
                 <li>Exclusão dos seus dados;</li>
                 <li>Revogação do consentimento dado anteriormente.</li>
             </ul>
+            <p>Esses pedidos, inclusive o de exclusão, são feitos mediante solicitação pelo e-mail de contato e
+            atendidos manualmente pelo responsável.</p>
             <p>Para exercer esses direitos, entre em contato pelo e-mail
             <a href="mailto:<?= e($contactEmail) ?>"><?= e($contactEmail) ?></a>.</p>
         </div>
