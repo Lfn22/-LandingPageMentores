@@ -64,6 +64,7 @@ $jsVersion = asset_version('assets/js/site.js');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="<?= e($colorBg) ?>">
     <title><?= e($site['seo']['title'] ?? ($site['brand']['mentor_name'] ?? '')) ?></title>
     <meta name="description" content="<?= e($site['seo']['description'] ?? '') ?>">
     <meta property="og:title" content="<?= e($site['seo']['title'] ?? '') ?>">
