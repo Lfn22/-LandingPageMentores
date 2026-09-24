@@ -5,6 +5,7 @@ function session_start_secure(): void
     session_name(app_config('session_name', 'LPMSESSID'));
     ini_set('session.use_strict_mode', '1');
     ini_set('session.use_only_cookies', '1');
+    ini_set('session.gc_maxlifetime', '7200');
     session_set_cookie_params([
         'lifetime' => 0,
         'path' => '/',
