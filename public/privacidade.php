@@ -92,12 +92,19 @@ $cssVersion = asset_version_privacy('assets/css/site.css');
             display: inline-block;
             margin-bottom: 1.5rem;
         }
+        .policy__logo {
+            width: 160px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
     <main class="page">
         <div class="container policy">
             <a class="policy__back" href="/">&larr; Voltar</a>
+
+            <img class="policy__logo" src="<?= e(safe_url_privacy($site['brand']['logo'] ?? '')) ?>" alt="<?= e($brandName) ?>" width="160" height="86" decoding="async">
 
             <h1>Política de Privacidade</h1>
             <p>Esta política explica como <strong><?= e($brandName) ?></strong> (controladora dos dados) trata as
