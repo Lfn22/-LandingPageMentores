@@ -107,6 +107,56 @@ QUEUE_PART="${SEARCH#*Fila de trabalho}"
 assert_contains "$QUEUE_PART" "Bruno Lima" "Busca por 'bruno' deveria retornar Bruno Lima na fila"
 assert_not_contains "$QUEUE_PART" "Ana Souza" "Busca por 'bruno' não deveria retornar Ana Souza na fila"
 
+echo "== Passo (csv-1): export.php e status.php sem sessão =="
+JAR3="$TMPDIR_ADMIN/jar3"
+CODE=$(curl -s -o "$TMPDIR_ADMIN/discard" -w "%{http_code}" -c "$JAR3" -b "$JAR3" "$BASE/admin/export.php")
+[ "$CODE" != "200" ] || fail "GET /admin/export.php sem sessão não deveria responder 200 (obtido: $CODE)"
+CODE=$(curl -s -o "$BODY" -w "%{http_code}" -c "$JAR3" -b "$JAR3" -H "Accept: application/json" \
+  --data-urlencode "status=contatado" --data-urlencode "id=1" \
+  "$BASE/admin/status.php")
+assert_eq "401" "$CODE" "POST /admin/status.php sem sessão (Accept JSON) deveria responder 401"
+
+echo "== Passo (csv-2): lead com tentativa de formula injection =="
+sql "INSERT INTO leads (name, phone, email, message, interests, status, consent_at, consent_ip, consent_text, ip, user_agent, created_at) VALUES ('=HYPERLINK(1)', '11999998888', 'formula@example.com', 'teste formula injection', NULL, 'novo', NOW(), '127.0.0.1', 'consentimento de teste', '127.0.0.1', 'e2e-admin', NOW())"
+
+echo "== Passo (csv-3): export.php logado =="
+CODE=$(curl -s -D "$HDR" -o "$BODY" -w "%{http_code}" -c "$JAR1" -b "$JAR1" "$BASE/admin/export.php")
+assert_eq "200" "$CODE" "GET /admin/export.php logado deveria responder 200"
+grep -qi '^content-type:.*text/csv' "$HDR" || fail "Content-Type do export.php deveria conter text/csv"
+FIRST3=$(head -c 3 "$BODY" | od -An -tx1 | tr -d ' \n')
+assert_eq "efbbbf" "$FIRST3" "export.php deveria começar com BOM UTF-8"
+FIRSTLINE=$(head -n 1 "$BODY")
+assert_contains "$FIRSTLINE" "id;data;nome;telefone;email;mensagem;interesses;status;consent_at;consent_ip" "Cabeçalho do CSV incorreto"
+CSVBODY=$(cat "$BODY")
+assert_contains "$CSVBODY" "ana@example.com" "CSV deveria conter o lead da Ana"
+assert_contains "$CSVBODY" "'=HYPERLINK" "CSV deveria neutralizar fórmula com prefixo '"
+
+echo "== Passo (csv-4): status.php troca status =="
+ANA_ID=$(sql "SELECT id FROM leads WHERE email='ana@example.com'")
+[ -n "$ANA_ID" ] || fail "Não encontrei o id da Ana"
+CODE=$(curl -s -o "$BODY" -w "%{http_code}" -c "$JAR1" -b "$JAR1" -H "Accept: application/json" \
+  --data-urlencode "id=$ANA_ID" --data-urlencode "status=contatado" \
+  "$BASE/admin/status.php")
+assert_eq "403" "$CODE" "POST /admin/status.php sem csrf_token deveria responder 403"
+
+PANEL_CSRF=$(curl -s -c "$JAR1" -b "$JAR1" "$BASE/admin/")
+CSRF=$(csrf_from "$PANEL_CSRF")
+CODE=$(curl -s -o "$BODY" -w "%{http_code}" -c "$JAR1" -b "$JAR1" -H "Accept: application/json" \
+  --data-urlencode "id=$ANA_ID" --data-urlencode "status=contatado" --data-urlencode "csrf_token=$CSRF" \
+  "$BASE/admin/status.php")
+assert_eq "200" "$CODE" "POST /admin/status.php com csrf válido deveria responder 200"
+assert_contains "$(cat "$BODY")" '"ok":true' "Resposta de status.php deveria conter ok:true"
+assert_eq "contatado" "$(sql "SELECT status FROM leads WHERE id=$ANA_ID")" "Status da Ana deveria persistir como contatado"
+
+CODE=$(curl -s -o "$BODY" -w "%{http_code}" -c "$JAR1" -b "$JAR1" -H "Accept: application/json" \
+  --data-urlencode "id=$ANA_ID" --data-urlencode "status=invalido" --data-urlencode "csrf_token=$CSRF" \
+  "$BASE/admin/status.php")
+assert_eq "422" "$CODE" "POST /admin/status.php com status inválido deveria responder 422"
+
+echo "== Passo (csv-5): painel referencia copiar CSV e admin.js =="
+assert_contains "$PANEL_CSRF" "data-copy-csv" "Painel deveria ter o botão data-copy-csv"
+assert_contains "$PANEL_CSRF" "admin.js" "Painel deveria carregar admin.js"
+
 echo "== Passo (e): logout =="
 CSRF=$(csrf_from "$PANEL")
 CODE=$(curl -s -D "$HDR" -o "$BODY" -w "%{http_code}" -c "$JAR1" -b "$JAR1" \
