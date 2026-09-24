@@ -29,17 +29,22 @@ function is_external_url(string $url): bool
     return str_starts_with($url, 'http://') || str_starts_with($url, 'https://');
 }
 
-$fontDisplay = google_font_family($site['fonts']['display'] ?? '', 'Cinzel');
+function asset_version(string $relativePath): int
+{
+    $path = __DIR__ . '/' . $relativePath;
+    $mtime = @filemtime($path);
+    return $mtime !== false ? $mtime : time();
+}
+
+$fontDisplay = google_font_family($site['fonts']['display'] ?? '', 'Archivo');
 $fontBody = google_font_family($site['fonts']['body'] ?? '', 'Inter');
-$fontsUrl = 'https://fonts.googleapis.com/css2?family=' . str_replace(' ', '+', $fontDisplay) . ':wght@400;600;800'
-    . '&family=' . str_replace(' ', '+', $fontBody) . ':wght@400;600;800&display=swap';
+$fontsUrl = 'https://fonts.googleapis.com/css2?family=' . str_replace(' ', '+', $fontDisplay) . ':wght@400;600;700'
+    . '&family=' . str_replace(' ', '+', $fontBody) . ':wght@400;600;700&display=swap';
 
-$colorPrimary = valid_hex_color($site['colors']['primary'] ?? null, '#C8A24C');
-$colorAccent = valid_hex_color($site['colors']['accent'] ?? null, '#9A7428');
-$colorBg = valid_hex_color($site['colors']['background'] ?? null, '#2F3E46');
+$colorPrimary = valid_hex_color($site['colors']['primary'] ?? null, '#263039');
+$colorAccent = valid_hex_color($site['colors']['accent'] ?? null, '#C8A24C');
+$colorBg = valid_hex_color($site['colors']['background'] ?? null, '#263039');
 $colorText = valid_hex_color($site['colors']['text'] ?? null, '#F3EFE6');
-
-$year = date('Y');
 
 $commercialUrl = (string) ($site['commercial']['url'] ?? '');
 $commercialLabel = $site['commercial']['label'] ?? 'Falar com o comercial';
@@ -49,12 +54,7 @@ $adminUrl = $site['admin_url'] ?? '/admin/';
 
 $brandAlt = trim(($site['brand']['mentor_name'] ?? '') . ' — ' . ($site['brand']['program_name'] ?? ''), ' —');
 
-function asset_version(string $relativePath): int
-{
-    $path = __DIR__ . '/' . $relativePath;
-    $mtime = @filemtime($path);
-    return $mtime !== false ? $mtime : time();
-}
+$waitlist = $site['waitlist'] ?? [];
 
 $cssVersion = asset_version('assets/css/site.css');
 $jsVersion = asset_version('assets/js/site.js');
@@ -82,48 +82,53 @@ $jsVersion = asset_version('assets/js/site.js');
             --color-accent: <?= e($colorAccent) ?>;
             --color-bg: <?= e($colorBg) ?>;
             --color-text: <?= e($colorText) ?>;
-            --font-display: "<?= e($fontDisplay) ?>", serif;
+            --font-display: "<?= e($fontDisplay) ?>", system-ui, sans-serif;
             --font-body: "<?= e($fontBody) ?>", system-ui, sans-serif;
         }
     </style>
     <script src="assets/js/site.js?v=<?= (int) $jsVersion ?>" defer></script>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container site-header__inner">
-            <a class="brand" href="#contato">
-                <img src="<?= e(safe_url($site['brand']['logo'] ?? '')) ?>" alt="<?= e($brandAlt) ?>" width="220" height="138">
-            </a>
-            <div class="site-header__actions">
-                <?php if ($showCommercial): ?>
-                    <a class="btn btn-primary" href="<?= e($commercialUrl) ?>" target="_blank" rel="noopener"><?= e($commercialLabel) ?></a>
-                <?php endif; ?>
-                <a class="btn btn-pill" href="<?= e(safe_url($adminUrl)) ?>">Painel do dono</a>
-            </div>
-        </div>
-    </header>
+    <main class="page" id="contato">
+        <div class="container waitlist">
+            <div class="waitlist__intro">
+                <img class="waitlist__logo" src="<?= e(safe_url($site['brand']['logo'] ?? '')) ?>" alt="<?= e($brandAlt) ?>" width="300" height="188">
 
-    <main>
-        <section id="contato" class="contact">
-            <div class="container contact__inner">
-                <div class="contact__intro">
-                    <h1>Fale com <?= e($site['brand']['mentor_name'] ?? '') ?></h1>
-                    <p>Preencha o formulário e nossa equipe retorna com o próximo passo.</p>
-                </div>
+                <h1 class="waitlist__headline"><?= e($waitlist['headline'] ?? '') ?></h1>
+                <div class="waitlist__hairline" aria-hidden="true"></div>
+                <p class="waitlist__paragraph"><?= e($waitlist['paragraph'] ?? '') ?></p>
+
+                <?php if (!empty($waitlist['bullets'])): ?>
+                <ul class="waitlist__bullets">
+                    <?php foreach ($waitlist['bullets'] as $bullet): ?>
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
+                                <path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span><?= e($bullet) ?></span>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+            </div>
+
+            <div class="waitlist__card">
                 <?php require APP_PATH . '/views/lead-form.php'; ?>
             </div>
-        </section>
+        </div>
     </main>
 
     <footer class="site-footer">
         <div class="container">
-            <p class="site-footer__lgpd">
-                <?= e($site['lgpd']['footer_notice'] ?? '') ?>
-                <?php if (!empty($site['lgpd']['policy_url'])): ?>
-                    <a href="<?= e(safe_url($site['lgpd']['policy_url'])) ?>">Política de Privacidade</a>
+            <div class="site-footer__actions">
+                <a class="btn btn-pill" href="<?= e(safe_url($adminUrl)) ?>">Ver inscrições</a>
+                <?php if ($showCommercial): ?>
+                    <a class="btn btn-pill" href="<?= e($commercialUrl) ?>" target="_blank" rel="noopener"><?= e($commercialLabel) ?></a>
                 <?php endif; ?>
-            </p>
-            <p class="site-footer__copy">&copy; <?= e((string) $year) ?> <?= e($site['brand']['mentor_name'] ?? '') ?></p>
+            </div>
+            <?php if (!empty($site['lgpd']['footer_notice'])): ?>
+                <p class="site-footer__lgpd"><?= e($site['lgpd']['footer_notice']) ?></p>
+            <?php endif; ?>
         </div>
     </footer>
 </body>

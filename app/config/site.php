@@ -10,55 +10,53 @@ return [
     ],
 
     'colors' => [
-        'primary' => '#C8A24C',
-        'accent' => '#9A7428',
-        'background' => '#2F3E46',
+        'primary' => '#263039',
+        'accent' => '#C8A24C',
+        'background' => '#263039',
         'text' => '#F3EFE6',
     ],
 
     'fonts' => [
-        'display' => 'Cinzel',
+        'display' => 'Archivo',
         'body' => 'Inter',
     ],
 
     'seo' => [
         'title' => 'Conceição Melo — Advocacia Previdenciária',
-        'description' => 'Fale com a equipe de Conceição Melo, advocacia previdenciária, e receba o retorno com o próximo passo do seu caso.',
+        'description' => 'Entre na lista de espera dos próximos lançamentos de Conceição Melo, advocacia previdenciária.',
         'og_image' => 'assets/img/logo-conceicao-melo.png',
     ],
 
-    'products' => [
-        [
-            'id' => 'aposentadoria',
-            'title' => 'Aposentadoria',
-            'description' => 'Análise do tempo de contribuição e das regras aplicáveis ao seu caso.',
+    'waitlist' => [
+        'headline' => 'Entre na lista de espera dos próximos lançamentos',
+        'paragraph' => 'Estamos preparando novos produtos e serviços. Quem está na lista recebe o aviso primeiro, com condições exclusivas de lançamento.',
+        'bullets' => [
+            'Acesso antecipado antes da abertura ao público',
+            'Você diz o que precisa — e ajudamos a priorizar o que será lançado',
+            'Sem spam: contato apenas quando houver novidade relevante',
         ],
-        [
-            'id' => 'revisao-beneficio',
-            'title' => 'Revisão de benefício',
-            'description' => 'Revisão de cálculo de benefícios já concedidos pelo INSS.',
-        ],
-        [
-            'id' => 'bpc-loas',
-            'title' => 'BPC/LOAS',
-            'description' => 'Benefício assistencial para idosos e pessoas com deficiência de baixa renda.',
-        ],
-        [
-            'id' => 'auxilio-doenca',
-            'title' => 'Auxílio-doença / incapacidade',
-            'description' => 'Orientação sobre pedidos de auxílio por incapacidade temporária ou permanente.',
-        ],
-        [
-            'id' => 'pensao-morte',
-            'title' => 'Pensão por morte',
-            'description' => 'Orientação para dependentes solicitarem a pensão junto ao INSS.',
-        ],
+        'card_title' => 'Garanta sua vaga na lista',
+        'card_subtitle' => 'Leva menos de um minuto. Conte também o que você procura.',
+        'submit_label' => 'Entrar na lista de espera',
     ],
+
+    'form' => [
+        'name_label' => 'Nome',
+        'name_placeholder' => 'Seu nome completo',
+        'email_label' => 'Email',
+        'email_placeholder' => 'voce@email.com',
+        'phone_label' => 'Telefone / WhatsApp',
+        'phone_placeholder' => '(00) 90000-0000',
+        'message_label' => 'O que você procura?',
+        'message_placeholder' => 'Descreva o produto, serviço ou resultado que você gostaria de encontrar aqui.',
+    ],
+
+    'products' => [],
 
     'whatsapp' => [
         'number' => '5511999999999',
-        'default_message' => 'Olá! Vim pelo site e gostaria de falar sobre um caso previdenciário.',
-        'after_lead_message' => 'Olá! Sou {nome}, acabei de enviar meu contato pelo site.',
+        'default_message' => 'Olá! Vim pelo site e gostaria de entrar na lista de espera.',
+        'after_lead_message' => 'Olá! Sou {nome}, acabei de entrar na lista de espera pelo site.',
     ],
 
     'commercial' => [
@@ -69,7 +67,7 @@ return [
     'admin_url' => '/admin/',
 
     'lgpd' => [
-        'consent_text' => 'Autorizo o uso dos meus dados para contato sobre o meu caso, conforme a Política de Privacidade.',
+        'consent_text' => 'Concordo em receber contato e com a Política de Privacidade.',
         'policy_url' => '#',
         'footer_notice' => 'Seus dados são usados apenas para contato sobre o seu caso.',
     ],

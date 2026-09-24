@@ -121,7 +121,7 @@
     panel.setAttribute('data-lead-success', '');
 
     var title = document.createElement('h3');
-    title.textContent = 'Recebemos seu contato';
+    title.textContent = 'Você está na lista!';
     title.setAttribute('tabindex', '-1');
 
     var text = document.createElement('p');
@@ -132,12 +132,24 @@
 
     if (typeof whatsappUrl === 'string' && whatsappUrl.indexOf('https://wa.me/') === 0) {
       var link = document.createElement('a');
-      link.className = 'btn btn-whatsapp';
+      link.className = 'btn btn-primary';
       link.href = whatsappUrl;
       link.target = '_blank';
       link.rel = 'noopener';
       link.textContent = 'Falar no WhatsApp';
       panel.appendChild(link);
+    }
+
+    var card = form.closest('.waitlist__card');
+    if (card) {
+      var cardTitle = card.querySelector('.lead-form__title');
+      var cardSubtitle = card.querySelector('.lead-form__subtitle');
+      if (cardTitle) {
+        cardTitle.remove();
+      }
+      if (cardSubtitle) {
+        cardSubtitle.remove();
+      }
     }
 
     form.replaceWith(panel);

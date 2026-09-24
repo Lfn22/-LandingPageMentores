@@ -138,8 +138,6 @@ JAR1="$TMPDIR_E2E/jar1"
 get_form "$BASE/" "$JAR1"
 [ -n "$CSRF" ] || fail "Não foi possível extrair csrf_token de /"
 [ -n "$FORM_TS" ] || fail "Não foi possível extrair form_ts de /"
-FIRST_INTEREST=$(printf '%s' "$FORM_HTML" | grep -oE 'name="interests\[\]"[^>]*value="[^"]*"' | head -1 | sed -E 's/.*value="([^"]*)".*/\1/' || true)
-[ -n "$FIRST_INTEREST" ] || fail "Não foi possível extrair o primeiro id de interesse de /"
 
 sleep 3
 code=$(do_post "$JAR1" 1 \
@@ -147,7 +145,6 @@ code=$(do_post "$JAR1" 1 \
   "phone=(11) 98765-4321" \
   "email=ana@example.com" \
   "message=Quero saber da mentoria" \
-  "interests[]=$FIRST_INTEREST" \
   "consent=1" \
   "website=" \
   "csrf_token=$CSRF" \
@@ -161,7 +158,6 @@ assert_eq "novo" "$(sql "SELECT status FROM leads WHERE email='ana@example.com'"
 assert_eq "1" "$(sql "SELECT consent_at IS NOT NULL FROM leads WHERE email='ana@example.com'")" "consent_at não deveria ser nulo"
 assert_eq "1" "$(sql "SELECT consent_ip != '' FROM leads WHERE email='ana@example.com'")" "consent_ip não deveria estar vazio"
 assert_eq "1" "$(sql "SELECT consent_text != '' FROM leads WHERE email='ana@example.com'")" "consent_text não deveria estar vazio"
-assert_eq "1" "$(sql "SELECT interests LIKE '%$FIRST_INTEREST%' FROM leads WHERE email='ana@example.com'")" "interests deveria conter o id marcado"
 
 echo "== Passo 5: lead feliz sem JavaScript =="
 JAR2="$TMPDIR_E2E/jar2"
@@ -285,13 +281,15 @@ code=$(do_post "$JAR7" 1 \
   "form_ts=$FORM_TS")
 assert_eq "429" "$code" "6ª tentativa deveria responder 429 (rate limit)"
 
-echo "== Passo 8: landing enxuta (formulario + botoes) =="
+echo "== Passo 8: landing de lista de espera (formulario + botoes) =="
 JAR8="$TMPDIR_E2E/jar8"
 get_form "$BASE/" "$JAR8"
 assert_contains "$FORM_HTML" 'id="contato"' "Home deveria conter id=contato"
 assert_contains "$FORM_HTML" "Conceição Melo" "Home deveria conter o nome da mentora"
+assert_contains "$FORM_HTML" "Entre na lista de espera" "Home deveria conter a headline da lista de espera"
+assert_contains "$FORM_HTML" "Garanta sua vaga na lista" "Home deveria conter o título do card"
 assert_contains "$FORM_HTML" "Falar com o comercial" "Home deveria conter o botão do comercial"
-assert_contains "$FORM_HTML" "Painel do dono" "Home deveria conter o botão do painel"
+assert_contains "$FORM_HTML" "Ver inscrições" "Home deveria conter o botão do painel"
 assert_contains "$FORM_HTML" "--color-primary:" "Home deveria conter a custom property --color-primary"
 assert_contains "$FORM_HTML" "nonce=" "Home deveria conter nonce no style inline"
 
@@ -299,6 +297,8 @@ assert_not_contains "$FORM_HTML" 'id="inicio"' "Home não deveria mais conter id
 assert_not_contains "$FORM_HTML" 'id="ofertas"' "Home não deveria mais conter id=ofertas (seção removida)"
 assert_not_contains "$FORM_HTML" 'id="depoimentos"' "Home não deveria mais conter id=depoimentos (seção removida)"
 assert_not_contains "$FORM_HTML" 'id="faq"' "Home não deveria mais conter id=faq (seção removida)"
+assert_not_contains "$FORM_HTML" "Painel do dono" "Home não deveria mais conter o botão antigo Painel do dono"
+assert_not_contains "$FORM_HTML" "Tenho interesse em" "Home não deveria conter o fieldset de interesses (products vazio)"
 
 assert_eq "200" "$(http_code "$BASE/assets/css/site.css")" "GET /assets/css/site.css deveria responder 200"
 assert_eq "200" "$(http_code "$BASE/assets/img/logo-conceicao-melo.png")" "GET /assets/img/logo-conceicao-melo.png deveria responder 200"
