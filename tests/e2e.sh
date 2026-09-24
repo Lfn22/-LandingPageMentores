@@ -52,8 +52,10 @@ http_code() {
 get_form() {
   local url="$1" jar="$2"
   FORM_HTML=$(curl -s -c "$jar" -b "$jar" "$url")
-  CSRF=$(printf '%s' "$FORM_HTML" | grep -oE 'name="csrf_token"[^>]*value="[^"]*"' | head -1 | sed -E 's/.*value="([^"]*)".*/\1/')
-  FORM_TS=$(printf '%s' "$FORM_HTML" | grep -oE 'name="form_ts"[^>]*value="[^"]*"' | head -1 | sed -E 's/.*value="([^"]*)".*/\1/')
+  # "|| true": sob set -e + pipefail, grep sem match (ex.: form_ts ausente em
+  # /setup.php) faria a atribuição abortar o script silenciosamente.
+  CSRF=$(printf '%s' "$FORM_HTML" | grep -oE 'name="csrf_token"[^>]*value="[^"]*"' | head -1 | sed -E 's/.*value="([^"]*)".*/\1/' || true)
+  FORM_TS=$(printf '%s' "$FORM_HTML" | grep -oE 'name="form_ts"[^>]*value="[^"]*"' | head -1 | sed -E 's/.*value="([^"]*)".*/\1/' || true)
 }
 
 # do_post <jar> <json:0|1> <field=value> ...
@@ -128,7 +130,7 @@ JAR1="$TMPDIR_E2E/jar1"
 get_form "$BASE/" "$JAR1"
 [ -n "$CSRF" ] || fail "Não foi possível extrair csrf_token de /"
 [ -n "$FORM_TS" ] || fail "Não foi possível extrair form_ts de /"
-FIRST_INTEREST=$(printf '%s' "$FORM_HTML" | grep -oE 'name="interests\[\]"[^>]*value="[^"]*"' | head -1 | sed -E 's/.*value="([^"]*)".*/\1/')
+FIRST_INTEREST=$(printf '%s' "$FORM_HTML" | grep -oE 'name="interests\[\]"[^>]*value="[^"]*"' | head -1 | sed -E 's/.*value="([^"]*)".*/\1/' || true)
 [ -n "$FIRST_INTEREST" ] || fail "Não foi possível extrair o primeiro id de interesse de /"
 
 sleep 3
@@ -161,7 +163,7 @@ code=$(do_post "$JAR2" 0 \
   "name=Bruno Lima" \
   "phone=(21) 91234-5678" \
   "email=bruno@example.com" \
-  "message=Quero mais informações" \
+  "message=Quero mais informacoes" \
   "consent=1" \
   "website=" \
   "csrf_token=$CSRF" \
