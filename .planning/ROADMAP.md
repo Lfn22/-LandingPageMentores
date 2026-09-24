@@ -10,7 +10,7 @@ Sair do zero até uma cópia publicável hoje mesmo: primeiro a landing page e a
 - Integer phases (1, 2, 3): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 1: Landing + Captura de Leads** - Visitante vê a landing com a marca do mentor e envia o formulário, que é gravado com segurança no MySQL; setup cria banco/tabelas e usuário do dono
+- [x] **Phase 1: Landing + Captura de Leads** - Visitante vê a landing com a marca do mentor e envia o formulário, que é gravado com segurança no MySQL; setup cria banco/tabelas e usuário do dono (completed 2026-09-24)
 - [ ] **Phase 2: Painel do Dono** - Dono faz login seguro, vê a lista de leads e exporta em CSV, com KPIs, radar de demanda e status por lead
 - [ ] **Phase 3: Acabamento e Deploy** - Landing com visual autoral, performance/SEO validados, e guia passo a passo para publicar uma nova cópia na Hostinger
 
@@ -30,7 +30,7 @@ Sair do zero até uma cópia publicável hoje mesmo: primeiro a landing page e a
 **Plans**: 2 plans
 Plans:
 - [x] 01-01-PLAN.md — Docker + e2e, camada compartilhada (bootstrap/db/sessão/segurança), schema, setup.php e captura de lead ponta a ponta (API + formulário mínimo + WhatsApp)
-- [ ] 01-02-PLAN.md — Landing completa dirigida por site.php (seções, CSS editorial, JS de envio/validação) + verificação humana
+- [x] 01-02-PLAN.md — Landing completa dirigida por site.php (seções, CSS editorial, JS de envio/validação) + verificação humana
 **UI hint**: yes
 
 ### Phase 2: Painel do Dono
@@ -69,6 +69,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Landing + Captura de Leads | 1/2 | In Progress|  |
+| 1. Landing + Captura de Leads | 2/2 | Complete   | 2026-09-24 |
 | 2. Painel do Dono | 0/TBD | Not started | - |
 | 3. Acabamento e Deploy | 0/TBD | Not started | - |

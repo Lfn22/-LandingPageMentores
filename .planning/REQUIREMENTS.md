@@ -7,7 +7,7 @@
 
 ### Landing Page
 
-- [ ] **LAND-01**: Visitante vê uma página única e enxuta (mobile-first): topo com marca + botão "Falar com o comercial" (link externo configurável) + botão "Painel do dono" (/admin/), a seção de contato com o formulário e rodapé LGPD — sem hero/sobre/ofertas/depoimentos/FAQ (decisão do usuário em 2026-09-24)
+- [x] **LAND-01**: Visitante vê uma página única e enxuta (mobile-first): topo com marca + botão "Falar com o comercial" (link externo configurável) + botão "Painel do dono" (/admin/), a seção de contato com o formulário e rodapé LGPD — sem hero/sobre/ofertas/depoimentos/FAQ (decisão do usuário em 2026-09-24)
 - [x] **LAND-02**: Marca do mentor (nome, logo, cores primária/secundária, fontes, textos, produtos, depoimentos, WhatsApp) vem de um único arquivo de configuração, sem editar HTML
 - [ ] **LAND-03**: Visual moderno e autoral (tipografia forte, sem gradientes roxos genéricos/emojis/cards clonados), com boa performance (Lighthouse ≥ 90 mobile) e SEO básico (title, meta description, Open Graph)
 
@@ -63,7 +63,7 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| LAND-01 | Phase 1 | Pending |
+| LAND-01 | Phase 1 | Complete |
 | LAND-02 | Phase 1 | Complete |
 | LEAD-01 | Phase 1 | Complete |
 | LEAD-02 | Phase 1 | Complete |
