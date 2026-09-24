@@ -101,8 +101,11 @@ assert_eq "1" "$(sql "SELECT last_login_at IS NOT NULL FROM users WHERE email='d
 
 echo "== Passo (d): busca =="
 SEARCH=$(curl -s -c "$JAR1" -b "$JAR1" "$BASE/admin/?q=bruno")
-assert_contains "$SEARCH" "Bruno Lima" "Busca por 'bruno' deveria retornar Bruno Lima"
-assert_not_contains "$SEARCH" "Ana Souza" "Busca por 'bruno' não deveria retornar Ana Souza"
+# Radar de demanda sempre mostra as mensagens recentes (não é filtrado pela
+# busca); a asserção de exclusão deve olhar só a seção "Fila de trabalho".
+QUEUE_PART="${SEARCH#*Fila de trabalho}"
+assert_contains "$QUEUE_PART" "Bruno Lima" "Busca por 'bruno' deveria retornar Bruno Lima na fila"
+assert_not_contains "$QUEUE_PART" "Ana Souza" "Busca por 'bruno' não deveria retornar Ana Souza na fila"
 
 echo "== Passo (e): logout =="
 CSRF=$(csrf_from "$PANEL")
