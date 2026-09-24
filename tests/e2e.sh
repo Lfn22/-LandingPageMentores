@@ -277,6 +277,25 @@ code=$(do_post "$JAR7" 1 \
   "form_ts=$FORM_TS")
 assert_eq "429" "$code" "6ª tentativa deveria responder 429 (rate limit)"
 
+echo "== Passo 8: landing completa =="
+JAR8="$TMPDIR_E2E/jar8"
+get_form "$BASE/" "$JAR8"
+assert_contains "$FORM_HTML" 'id="inicio"' "Home deveria conter id=inicio"
+assert_contains "$FORM_HTML" 'id="sobre"' "Home deveria conter id=sobre"
+assert_contains "$FORM_HTML" 'id="ofertas"' "Home deveria conter id=ofertas"
+assert_contains "$FORM_HTML" 'id="depoimentos"' "Home deveria conter id=depoimentos"
+assert_contains "$FORM_HTML" 'id="faq"' "Home deveria conter id=faq"
+assert_contains "$FORM_HTML" 'id="contato"' "Home deveria conter id=contato"
+assert_contains "$FORM_HTML" "Marina Costa" "Home deveria conter o nome do mentor"
+assert_contains "$FORM_HTML" "--color-primary:" "Home deveria conter a custom property --color-primary"
+assert_contains "$FORM_HTML" "nonce=" "Home deveria conter nonce no style inline"
+
+assert_eq "200" "$(http_code "$BASE/assets/css/site.css")" "GET /assets/css/site.css deveria responder 200"
+assert_eq "200" "$(http_code "$BASE/assets/img/logo.svg")" "GET /assets/img/logo.svg deveria responder 200"
+
+curl -s -D "$HDR" -o "$TMPDIR_E2E/discard" "$BASE/" >/dev/null
+grep -qi '^content-security-policy:' "$HDR" || fail "Header Content-Security-Policy ausente em /"
+
 echo "E2E OK"
 
 if [ "${1:-}" = "--down" ]; then
