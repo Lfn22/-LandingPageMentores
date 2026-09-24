@@ -48,6 +48,16 @@ $showCommercial = is_external_url($commercialUrl);
 $adminUrl = $site['admin_url'] ?? '/admin/';
 
 $brandAlt = trim(($site['brand']['mentor_name'] ?? '') . ' — ' . ($site['brand']['program_name'] ?? ''), ' —');
+
+function asset_version(string $relativePath): int
+{
+    $path = __DIR__ . '/' . $relativePath;
+    $mtime = @filemtime($path);
+    return $mtime !== false ? $mtime : time();
+}
+
+$cssVersion = asset_version('assets/css/site.css');
+$jsVersion = asset_version('assets/js/site.js');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -64,7 +74,7 @@ $brandAlt = trim(($site['brand']['mentor_name'] ?? '') . ' — ' . ($site['brand
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="<?= e($fontsUrl) ?>">
-    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/site.css?v=<?= (int) $cssVersion ?>">
 
     <style nonce="<?= e(csp_nonce()) ?>">
         :root {
@@ -76,7 +86,7 @@ $brandAlt = trim(($site['brand']['mentor_name'] ?? '') . ' — ' . ($site['brand
             --font-body: "<?= e($fontBody) ?>", system-ui, sans-serif;
         }
     </style>
-    <script src="assets/js/site.js" defer></script>
+    <script src="assets/js/site.js?v=<?= (int) $jsVersion ?>" defer></script>
 </head>
 <body>
     <header class="site-header">
