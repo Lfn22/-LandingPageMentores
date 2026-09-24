@@ -84,6 +84,12 @@ button.btn {
   border: none;
 }
 
+button.btn:disabled,
+.is-sending {
+  opacity: 0.65;
+  cursor: progress;
+}
+
 :focus-visible {
   outline: 3px solid var(--color-accent);
   outline-offset: 2px;
