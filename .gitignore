@@ -4,3 +4,8 @@ app/storage/*
 tests/.e2e-tmp/
 dist/
 .deploy-stage/
+
+# Documentação local (não versionar)
+.planning/
+CLAUDE.md
+DEPLOY.md
