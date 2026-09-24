@@ -4,26 +4,27 @@ function lead_validate(array $input, array $site): array
 {
     $data = [];
     $errors = [];
+    $str = fn(string $key): string => is_string($input[$key] ?? null) ? $input[$key] : '';
 
-    $name = trim((string) ($input['name'] ?? ''));
+    $name = trim($str('name'));
     if (mb_strlen($name) < 2 || mb_strlen($name) > 120) {
         $errors['name'] = 'Informe seu nome (2 a 120 caracteres).';
     }
     $data['name'] = $name;
 
-    $phone = preg_replace('/\D+/', '', (string) ($input['phone'] ?? ''));
+    $phone = preg_replace('/\D+/', '', $str('phone'));
     if (!in_array(strlen($phone), [10, 11], true)) {
         $errors['phone'] = 'Informe um telefone válido com DDD.';
     }
     $data['phone'] = $phone;
 
-    $email = trim((string) ($input['email'] ?? ''));
+    $email = trim($str('email'));
     if (!filter_var($email, FILTER_VALIDATE_EMAIL) || mb_strlen($email) > 190) {
         $errors['email'] = 'Informe um e-mail válido.';
     }
     $data['email'] = $email;
 
-    $message = trim((string) ($input['message'] ?? ''));
+    $message = trim($str('message'));
     if (mb_strlen($message) < 1 || mb_strlen($message) > 2000) {
         $errors['message'] = 'Escreva uma mensagem (até 2000 caracteres).';
     }

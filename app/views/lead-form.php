@@ -16,6 +16,9 @@ $formLabels = $site['form'] ?? [];
     $errors = $flash['errors'] ?? [];
     $old = $flash['old'] ?? [];
     $oldInterests = is_array($old['interests'] ?? null) ? $old['interests'] : [];
+    foreach (['name', 'email', 'phone', 'message'] as $field) {
+        $old[$field] = is_string($old[$field] ?? null) ? $old[$field] : '';
+    }
     ?>
     <h2 class="lead-form__title"><?= e($site['waitlist']['card_title'] ?? 'Garanta sua vaga na lista') ?></h2>
     <p class="lead-form__subtitle"><?= e($site['waitlist']['card_subtitle'] ?? '') ?></p>
