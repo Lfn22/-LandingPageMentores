@@ -35,7 +35,7 @@ $fontsUrl = 'https://fonts.googleapis.com/css2?family=' . str_replace(' ', '+', 
     . '&family=' . str_replace(' ', '+', $fontBody) . ':wght@400;600;700&display=swap';
 
 $brandName = trim(($site['brand']['mentor_name'] ?? '') . ' — ' . ($site['brand']['program_name'] ?? ''), ' —');
-$contactEmail = (string) ($site['lgpd']['contact_email'] ?? 'conceicao@conceicaomeloadvprev.com.br');
+$contactEmail = (string) ($site['lgpd']['contact_email'] ?? '');
 
 $cssVersion = asset_version_privacy('assets/css/site.css');
 ?>
@@ -149,8 +149,10 @@ $cssVersion = asset_version_privacy('assets/css/site.css');
             </ul>
             <p>Esses pedidos, inclusive o de exclusão, são feitos mediante solicitação pelo e-mail de contato e
             atendidos manualmente pelo responsável.</p>
+            <?php if ($contactEmail !== ''): ?>
             <p>Para exercer esses direitos, entre em contato pelo e-mail
             <a href="mailto:<?= e($contactEmail) ?>"><?= e($contactEmail) ?></a>.</p>
+            <?php endif; ?>
         </div>
     </main>
 
