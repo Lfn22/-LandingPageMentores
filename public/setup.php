@@ -66,15 +66,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        $schema = file_get_contents(APP_PATH . '/database/schema.sql');
-        foreach (preg_split('/;\s*\n/', $schema) as $statement) {
-            $statement = trim($statement);
-            if ($statement !== '') {
-                $pdo->exec($statement);
+        try {
+            $schema = file_get_contents(APP_PATH . '/database/schema.sql');
+            foreach (preg_split('/;\s*\n/', $schema) as $statement) {
+                $statement = trim($statement);
+                if ($statement !== '') {
+                    $pdo->exec($statement);
+                }
             }
+            $userCount = (int) $pdo->query('SELECT COUNT(*) FROM users')->fetchColumn();
+        } catch (Throwable $ex) {
+            error_log('setup schema falhou: ' . $ex->getMessage());
+            http_response_code(500);
+            setup_page(
+                'Erro ao criar tabelas',
+                '<p>Não foi possível criar as tabelas no banco. Verifique as permissões do usuário do banco.</p>'
+            );
+            exit;
         }
 
-        $userCount = (int) $pdo->query('SELECT COUNT(*) FROM users')->fetchColumn();
         if ($userCount === 0) {
             $stmt = $pdo->prepare('INSERT INTO users (email, password_hash, created_at) VALUES (?, ?, ?)');
             $stmt->execute([$email, password_hash($password, PASSWORD_DEFAULT), now_db()]);
@@ -86,6 +96,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setup_page(
                 'Erro ao finalizar',
                 '<p>Não foi possível gravar app/storage/setup.lock. Verifique as permissões da pasta.</p>'
+            );
+            exit;
+        }
+
+        if ($userCount > 0) {
+            setup_page(
+                'Usuário já existente',
+                '<p>Já existe um usuário cadastrado; o e-mail e a senha informados não foram alterados. '
+                . 'Por segurança, apague o arquivo public/setup.php do servidor.</p>'
             );
             exit;
         }
