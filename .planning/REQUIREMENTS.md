@@ -9,7 +9,7 @@
 
 - [x] **LAND-01**: Visitante vê uma página única e enxuta (mobile-first): topo com marca + botão "Falar com o comercial" (link externo configurável) + botão "Painel do dono" (/admin/), a seção de contato com o formulário e rodapé LGPD — sem hero/sobre/ofertas/depoimentos/FAQ (decisão do usuário em 2026-09-24)
 - [x] **LAND-02**: Marca do mentor (nome, logo, cores primária/secundária, fontes, textos, produtos, depoimentos, WhatsApp) vem de um único arquivo de configuração, sem editar HTML
-- [ ] **LAND-03**: Visual moderno e autoral (tipografia forte, sem gradientes roxos genéricos/emojis/cards clonados), com boa performance (Lighthouse ≥ 90 mobile) e SEO básico (title, meta description, Open Graph)
+- [x] **LAND-03**: Visual moderno e autoral (tipografia forte, sem gradientes roxos genéricos/emojis/cards clonados), com boa performance (Lighthouse ≥ 90 mobile) e SEO básico (title, meta description, Open Graph)
 
 ### Captura de Leads
 
@@ -36,7 +36,7 @@
 
 - [x] **INST-01**: Script de setup cria as tabelas e o usuário do dono em uma nova cópia (e se desativa/bloqueia depois de usado)
 - [x] **INST-02**: Credenciais do banco ficam em arquivo de config fora do acesso público (ou protegido por .htaccess)
-- [ ] **INST-03**: Guia passo a passo para publicar uma nova cópia na Hostinger (criar banco, subir arquivos, rodar setup, configurar marca)
+- [x] **INST-03**: Guia passo a passo para publicar uma nova cópia na Hostinger (criar banco, subir arquivos, rodar setup, configurar marca)
 
 ## v2 Requirements
 
@@ -82,14 +82,15 @@
 | PAIN-07 | Phase 2 | Complete |
 | PAIN-08 | Phase 2 | Complete |
 | PAIN-09 | Phase 2 | Complete |
-| LAND-03 | Phase 3 | Pending |
-| INST-03 | Phase 3 | Pending |
+| LAND-03 | Phase 3 | Complete |
+| INST-03 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 21 total
 - Mapped to phases: 21
 - Unmapped: 0 ✓
+- Complete: 21/21 ✓ (v1 concluído)
 
 ---
 *Requirements defined: 2026-09-24*
-*Last updated: 2026-09-24 after painel reference (3 fases, cobertura 21/21)*
+*Last updated: 2026-09-24 after Fase 3 (Acabamento e Deploy) concluída — v1 completo, 21/21 requisitos*

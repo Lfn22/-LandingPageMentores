@@ -12,7 +12,7 @@ Sair do zero até uma cópia publicável hoje mesmo: primeiro a landing page e a
 
 - [x] **Phase 1: Landing + Captura de Leads** - Visitante vê a landing com a marca do mentor e envia o formulário, que é gravado com segurança no MySQL; setup cria banco/tabelas e usuário do dono (completed 2026-09-24)
 - [x] **Phase 2: Painel do Dono** - Dono faz login seguro, vê a lista de leads e exporta em CSV, com KPIs, radar de demanda e status por lead (completed 2026-09-24)
-- [ ] **Phase 3: Acabamento e Deploy** - Landing com visual autoral, performance/SEO validados, e guia passo a passo para publicar uma nova cópia na Hostinger
+- [x] **Phase 3: Acabamento e Deploy** - Landing com visual autoral, performance/SEO validados, e guia passo a passo para publicar uma nova cópia na Hostinger (completed 2026-09-24)
 
 ## Phase Details
 
@@ -59,7 +59,9 @@ Plans:
   1. Landing tem visual moderno e autoral (tipografia forte, sem gradientes roxos genéricos, emojis ou cards clonados)
   2. Landing atinge Lighthouse ≥ 90 no mobile e tem SEO básico (title, meta description, Open Graph)
   3. Existe um guia passo a passo cobrindo criar o banco, subir os arquivos, rodar o setup e configurar a marca para publicar uma nova cópia na Hostinger
-**Plans**: TBD
+**Plans**: 1 plan
+Plans:
+- [x] 03-01-PLAN.md — Política de privacidade (LGPD), logo oficial em SVG, SEO básico (theme-color/robots.txt), DEPLOY.md e script de empacotamento
 **UI hint**: yes
 
 ## Progress
@@ -71,4 +73,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Landing + Captura de Leads | 2/2 | Complete   | 2026-09-24 |
 | 2. Painel do Dono | 2/2 | Complete   | 2026-09-24 |
-| 3. Acabamento e Deploy | 0/TBD | Not started | - |
+| 3. Acabamento e Deploy | 1/1 | Complete   | 2026-09-24 |
