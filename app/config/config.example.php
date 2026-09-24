@@ -18,6 +18,9 @@ return [
     'timezone' => 'America/Sao_Paulo',
     'session_name' => 'LPMSESSID',
     'min_fill_seconds' => 3,
+    // Deixe vazio. Só preencha com 'HTTP_CF_CONNECTING_IP' se o site estiver
+    // atrás do Cloudflare; caso contrário, qualquer um poderia falsificar o IP.
+    'trusted_proxy_header' => '',
     'rate_limit' => [
         'lead' => ['max' => 5, 'window' => 600],
         // Usado pelo login do painel (Fase 2).

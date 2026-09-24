@@ -42,6 +42,13 @@ function form_ts_age(?string $value): ?int
 
 function client_ip(): string
 {
+    $header = (string) app_config('trusted_proxy_header', '');
+    if ($header !== '') {
+        $value = $_SERVER[$header] ?? '';
+        if (is_string($value) && filter_var($value, FILTER_VALIDATE_IP)) {
+            return $value;
+        }
+    }
     return $_SERVER['REMOTE_ADDR'] ?? '';
 }
 
