@@ -28,8 +28,8 @@ return [
     ],
 
     'waitlist' => [
-        'headline' => 'Entre na lista de espera dos próximos lançamentos',
-        'paragraph' => 'Estamos preparando novos produtos e serviços. Quem está na lista recebe o aviso primeiro.',
+        'headline' => 'Do zero à excelência em Direito Previdenciário Rural',
+        'paragraph' => 'Fique em primeiro no Direito previdenciário Rural. Conheça o nosso metódo do zero.',
         'bullets' => [
             'Sem spam: contato apenas quando houver novidade relevante',
         ],
@@ -46,7 +46,7 @@ return [
         'phone_label' => 'Telefone / WhatsApp',
         'phone_placeholder' => '(00) 90000-0000',
         'message_label' => 'O que você procura?',
-        'message_placeholder' => 'Descreva o produto, serviço ou resultado que você gostaria de encontrar aqui.',
+        'message_placeholder' => 'Ex: comprovar atividade rural, montar a tese, precificar, conseguir os primeiros clientes',
     ],
 
     'products' => [],
